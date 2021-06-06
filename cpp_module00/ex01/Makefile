@@ -2,7 +2,7 @@ NAME = a.out
 pp = clang++
 CPPFLAGS = -Wall -Wextra -Werror
 CPP17= -std=c++17
-SRCS = megaphone.cpp
+SRCS = My_Awesome_PhoneBook
 OBJS = $(SRCS:.cpp=.o)
 RM = rm -f
 
