@@ -2,7 +2,7 @@ NAME = a.out
 pp = clang++
 CPPFLAGS = -Wall -Wextra -Werror
 CPP17= -std=c++17
-SRCS = My_Awesome_PhoneBook
+SRCS = My_Awesome_PhoneBook.cpp contact.cpp phonebook.cpp
 OBJS = $(SRCS:.cpp=.o)
 RM = rm -f
 
