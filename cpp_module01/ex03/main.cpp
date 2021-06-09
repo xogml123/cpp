@@ -1,18 +1,13 @@
-#include "ZombieEvent.hpp"
+#include "ZombieHorde.hpp"
 
 
 int	main()
 {
-	ZombieEvent	ze;
-	Zombie*		z1;
-	Zombie*		z2;
-
-	ze.setZombieType("special");
-	std::cout<<"newZombie call"<<std::endl;
-	z1 = ze.newZombie("newZombie");
-	std::cout<<"randomChump call"<<std::endl;
-	z2 = ze.randomChump();
-
-	delete z1;
-	delete z2;
+	ZombieHorde	horde1("horde_one", 10);
+	ZombieHorde* horde2;
+	
+	horde2 = new ZombieHorde("horde_two", 5);
+	horde1.announce();
+	horde2->announce();
+	delete horde2;
 }

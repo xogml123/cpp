@@ -17,5 +17,6 @@ class Zombie{
 		~Zombie();
 		void	announce() const;
 		static const std::string& randomName();
+		void	setTypeName(const std::string& type, const std::string& name);
 };
 #endif

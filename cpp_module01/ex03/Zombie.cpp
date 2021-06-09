@@ -1,4 +1,5 @@
 #include "Zombie.hpp"
+
 const std::string Zombie::zombieName[nameNum]={
 		"A",
 		"B",
@@ -14,14 +15,14 @@ const std::string Zombie::zombieName[nameNum]={
 Zombie::Zombie()
 :type_(std::string()), name_(std::string())
 {
-
+	srand(time(NULL));
 }
 
 Zombie::Zombie(std::string type, std::string name)
 :type_(type), name_(name)
 {
+	srand(time(NULL));
 	std::cout<<name_<<" creation!"<<std::endl;
-	
 }
 
 Zombie::~Zombie()
@@ -36,6 +37,11 @@ void	Zombie::announce() const
 
 const std::string& Zombie::randomName()
 {
-	srand(time(NULL));
 	return (zombieName[rand() % nameNum]);
+}
+
+void	Zombie::setTypeName(const std::string& type, const std::string& name)
+{
+	type_=type;
+	name_=name;
 }
