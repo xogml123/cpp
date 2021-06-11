@@ -23,6 +23,11 @@ int	main(int argc, char *argv[])
 		std::cout<<"error : invalid arguments num."<<std::endl;
 	fileName = argv[1];
 	line.open(fileName);
+	if (!line.is_open())
+	{
+		std::cout<<"error : invalid filename."<<std::endl;
+		exit(0);
+	}
 	replace.open(fileName + (std::string)".replace");
 	if (line.is_open() && replace.is_open())
 	{

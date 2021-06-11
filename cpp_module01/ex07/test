@@ -1,3 +1,8 @@
-Wikipedia has received praise for its enablement of the democratization of knowledge, extent of coverage, unique structure, culture, and reduced amount of commercial bias, 
-but has also been criticized for its perceived unreliability and for exhibiting systemic bias, namely geographical bias, racial bias, gender bias against women, and alleged ideological bias. Its coverage of American politics and of the COVID-19 pandemic have received substantial media attention. At various points, Wikipedia has been censored by world governments, ranging from the blocking of specific pages to bans on the entire site.
-Wikipedia has become an element of popular culture, with references in books, films and academic studies.
+Until today, any numbers you used in your programs were basically integers or floating
+point numbers, or any of their variants (short, char, long, double, etc). From your previous reading, it’s safe to assume that integers and floating point numbers have opposite
+caracteristics.
+But today, this will change. You are going to discover a new and awesome number
+type: fixed point numbers! Always missing from most languages scalar types, fixed point
+numbers offer a valuable balance between performance, accuracy, range and precision that
+explains why these numbers are widely used in graphics, sound or scientific programming
+to name a few.
