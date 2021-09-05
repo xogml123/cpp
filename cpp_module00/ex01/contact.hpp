@@ -1,29 +1,25 @@
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
+
+# define ATT_NUM 5
 class Contact
 {
 	enum columns{
 			first_name,
 			last_name,
 			nickname,
-			login,
-			postal_address,
-			email_address,
 			phone_number,
-			birthday_date,
-			favorite_meal,
-			underwear_color,
 			darkest_secret
-		};
+	};
 	private:
-		static const std::string	metadata[11];
-		std::string data[11];
+		static const std::string	metadata[ATT_NUM];
+		std::string data[ATT_NUM];
 	public:
 		Contact();
 		~Contact();
 		
 		void		stdin_init();
-		std::string	at(int j);
-		std::string metadata_at(int j);
+		std::string	at(int j) const;
+		std::string metadata_at(int j) const;
 };
 #endif

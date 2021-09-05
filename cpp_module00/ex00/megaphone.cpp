@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-
+#include <cctype>
 
 int	main(int argc, char **argv)
 {
@@ -11,8 +11,8 @@ int	main(int argc, char **argv)
 		for (int i = 1; i < argc; i++)
 		{
 			std::string temp = argv[i];
-			for (char ch : temp)
-				std::cout << (char)toupper(ch);
+			for (int j = 0; temp[j];j++)
+				std::cout << (char)toupper(temp[j]);
 		}
 		std::cout <<std::endl;
 	}

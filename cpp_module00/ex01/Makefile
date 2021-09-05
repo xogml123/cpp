@@ -1,7 +1,7 @@
 NAME = a.out
 pp = clang++
 CPPFLAGS = -Wall -Wextra -Werror
-CPP17= -std=c++17
+CPP98= -std=c++98
 SRCS = My_Awesome_PhoneBook.cpp contact.cpp phonebook.cpp
 OBJS = $(SRCS:.cpp=.o)
 RM = rm -f
@@ -12,7 +12,7 @@ $(NAME) : $(OBJS)
 	$(pp) $(CPPFLAGS) -o $@ $^
 
 %.o : %.cpp
-	$(pp) $(CPPFLAGS) -c $< -o $@ $(CPP17)
+	$(pp) $(CPPFLAGS) -c $< -o $@ $(CPP98)
 
 clean :
 	$(RM) $(OBJS)

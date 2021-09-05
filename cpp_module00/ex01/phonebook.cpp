@@ -2,30 +2,26 @@
 #include "phonebook.hpp"
 
 Phonebook::Phonebook()
+:contacts_num(0)
 {
-	contacts_num = 0;
 }
+
 Phonebook::~Phonebook()
 {
 
 }
 
-int	Phonebook::phonebook_num()
+int	Phonebook::phonebook_num() const
 {
 	return (contacts_num);
 }
 
 void	Phonebook::push(Contact& contact)
 {
-	if (contacts_num == 8)
-		std::cout<<"Phonebook is full!"<<std::endl;
-	else
-	{
-		contacts[contacts_num++] = contact;
-	}
+	contacts[contacts_num++] = contact;
 }
 
-void	Phonebook::show_all()
+void	Phonebook::show_all() const
 {
 	if (contacts_num == 0)
 		std::cout<<"Phonebook is empty."<<std::endl;
@@ -35,7 +31,7 @@ void	Phonebook::show_all()
 		for (int i = 0; i < contacts_num;i++)
 		{
 			std::cout<< "|";
-			std::cout<<std::setw(10)<<i;
+			std::cout<<std::setw(10)<<i + 1;
 			std::cout<<"|";
 			for (int j = 0; j < 3; j++)
 			{
@@ -51,18 +47,25 @@ void	Phonebook::show_all()
 	}
 }
 
-void	Phonebook::input_index()
+void	Phonebook::input_index() const
 {
+	std::string	index_arr;
 	int	index;
 
 	std::cout<<"enter index ranged 0 to "<< contacts_num - 1<< " . : ";
-	std::cin>>index;
-	if (index >= 0 && index < contacts_num)
-		for (int i= 0;i<11;i++)
+	std::getline(std::cin, index_arr);
+	if (unvalid_index_arr(index_arr))
+	{
+		std::cout<<"Wrong Index!"<<std::endl;
+		return ;
+	}	
+	index = stoi(index_arr);
+	if (index > 0 && index <= contacts_num)
+		for (int i= 0;i < ATT_NUM;i++)
 		{
-			std::cout<<contacts[index].metadata_at(i)<<" : ";
-			std::cout<<contacts[index].at(i)<<std::endl;
+			std::cout<<contacts[index - 1].metadata_at(i)<<" : ";
+			std::cout<<contacts[index - 1].at(i)<<std::endl;
 		}
 	else
-		std::cout<<"wrong index."<<std::endl;
+		std::cout<<"Index Out of Range."<<std::endl;
 }

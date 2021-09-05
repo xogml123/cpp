@@ -10,9 +10,9 @@ class Phonebook
 	public:
 		Phonebook();
 		~Phonebook();
-		int		phonebook_num();
+		int		phonebook_num() const;
 		void	push(Contact& contact);
-		void	show_all();
-		void	input_index();
+		void	show_all() const;
+		void	input_index() const;
 };
 #endif
