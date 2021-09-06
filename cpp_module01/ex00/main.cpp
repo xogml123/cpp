@@ -1,28 +1,10 @@
-#include "Pony.hpp"
+#include "Zombie.hpp"
 
-void	ponyOnTheHeap(std::string name)
+int	main()
 {
-	Pony* pony;
-	
-	pony = new Pony(name);
-	pony->cry();
-	pony->run();
-	delete pony;
-}
+	Zombie*		z1;
 
-void	ponyOnTheStack(std::string name)
-{
-	Pony pony(name);
-
-	pony.cry();
-	pony.run();
-}
-
-int		main()
-{
-	std::cout<<"heap pony start"<<std::endl;
-	ponyOnTheHeap("heap");
-	std::cout<<"stack pony start"<<std::endl;
-	ponyOnTheStack("stack");
-	std::cout<<"end"<<std::endl;
+	z1 = newZombie("z1");
+	randomChump("z2");
+	delete z1;
 }
