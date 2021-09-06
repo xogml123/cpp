@@ -1,8 +1,16 @@
-#include "Human.hpp"
+#include "Karen.hpp"
 
-int main()
+int	main()
 {
-	Human bob;
-	std::cout << bob.identify() << std::endl;
-	std::cout << bob.getBrain().identify() << std::endl;
+	Karen k;
+
+	std::cout<<"-------------------------------------------------------------"<<std::endl;
+	k.complain("debug");
+	std::cout<<"-------------------------------------------------------------"<<std::endl;
+	k.complain("info");
+	std::cout<<"-------------------------------------------------------------"<<std::endl;
+	k.complain("warning");
+	std::cout<<"-------------------------------------------------------------"<<std::endl;
+	k.complain("error");
+	std::cout<<"-------------------------------------------------------------"<<std::endl;
 }
