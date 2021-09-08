@@ -36,14 +36,14 @@ int		Karen::findFuncIndex(const std::string& comp)
 		if (!funcNames[i].compare(comp))
 			return (i);
 	}
-	return (-1);
+	return (4);
 }
 
 void Karen::complain( std::string level )
 {
 	int	index = findFuncIndex(level);
 
-	if (index == -1)
+	if (index == 4)
 	{
 		std::cout<<"Wrong Level!"<<std::endl;
 		return ;

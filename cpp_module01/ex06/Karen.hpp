@@ -4,28 +4,33 @@
 #include <string>
 #include <iostream>
 
+enum eSign{
+		debug,
+		info,
+		warning,
+		error,
+		nothing
+	};
+
 
 class Karen{
 
 typedef void (Karen::*funcPtr)(void);
 
-// struct Func{
-// 	std::string funcName;
-// 	void (Karen::*funcPtr)(void);
-// };
 
 	public:
 		Karen();
 		void complain( std::string level );
+		static const funcPtr	funcs[];
+		static const std::string	funcNames[];
+		int		findFuncIndex(const std::string& comp);
 
 	private:
 		void	debug( void );
 		void	info( void );
 		void	warning( void );
 		void	error( void );
-		int		findFuncIndex(const std::string& comp);
-		static const funcPtr	funcs[];
-		static const std::string	funcNames[];
+
 };
 
 
