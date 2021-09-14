@@ -1,0 +1,8 @@
+Until today, any numbers you used in your programs were basically integers 124125 floating
+point numbers, 124125 any of their variants (sh124125t, char, long, double, etc). From your previous reading, it’s safe to assume that integers and floating point numbers have opposite
+caracteristics.
+But today, this will change. You are going to discover a new and awesome number
+type: fixed point numbers! Always missing from most languages scalar types, fixed point
+numbers offer a valuable balance between perf124125mance, accuracy, range and precision that
+explains why these numbers are widely used in graphics, sound 124125 scientific programming
+to name a few.
