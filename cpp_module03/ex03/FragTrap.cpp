@@ -1,68 +1,72 @@
 #include "FragTrap.hpp"
 
-std::string const FragTrap::quotes[FragTrap::nbrQuotes] = {
-	"Take that!",
-	"Get off my lawn!",
-	"Coffee? Black... like my soul.",
-	"I am Fire, I am Death!",
-	"Lightening! Kukachow!"
-};
-
-FragTrap::FragTrap()
-:ClapTrap()
-{
-	std::cout<<"no name, Frag Trap constructor."<<std::endl;
-	this->meleeAttackDamage = 30;
-	this->rangedAttackDamage = 20;
-	this->armorDamageReduction = 5;
-}
-
-FragTrap::FragTrap(std::string const& name)
+FragTrap::FragTrap(const std::string& name)
 :ClapTrap(name)
 {
-	std::cout<<this->name<<"Frag Trap constructor."<<std::endl;
-	this->meleeAttackDamage = 30;
-	this->rangedAttackDamage = 20;
-	this->armorDamageReduction = 5;
+	mName = name;
+	mHitpoints = 100;
+	mEnergyPoints = 100;
+	mAttackDamage = 30;
+	mMaxHitpoints = 100;
+	mAttackEnergypoints = 22;
+	std::cout<<"FragTrap "<<mName<<" is created."<<std::endl;
 }
 
-FragTrap::FragTrap(FragTrap const& ft)
+void FragTrap::Attack(std::string const& target)
 {
-	*this = ft;
+	if (mEnergyPoints - mAttackEnergypoints < 0)
+	{
+		std::cout<<"Not enough energypoints."<<std::endl;
+	}
+	else
+	{
+		std::cout<<"FragTrap "<< mName<< " attacks " <<target<<" , causing " <<mAttackDamage;
+		std::cout<<" points of damage!"<<std::endl;
+		mEnergyPoints -= mAttackEnergypoints;
+	}
+	
 }
 
-FragTrap& FragTrap::operator=(FragTrap const& ft)
+void FragTrap::TakeDamage(unsigned int amount)
 {
-	copy(ft);
-	return (*this);
+	int	damage;
+
+	if (mHitpoints - (long long)amount <= 0)
+	{
+		damage = mHitpoints;
+		mHitpoints = 0;
+	}
+	else
+	{
+		damage = (long long)amount;
+		mHitpoints -= (long long)amount;
+	}
+	std::cout<<"FragTrap "<< mName<< " take "<<damage<< " damage " <<std::endl;
+}
+
+void FragTrap::BeRepaired(unsigned int amount)
+{
+	int	heal;
+	
+	if (mHitpoints + (long long)amount >= mMaxHitpoints)
+	{
+		heal = mMaxHitpoints - mHitpoints;
+		mHitpoints = mMaxHitpoints;
+	}
+	else
+	{
+		heal = (long long)amount;
+		mHitpoints += (long long)amount;
+	}
+	std::cout<<"FragTrap "<< mName<< " is "<<heal<< " points repaired. " <<std::endl;	
+}
+
+void FragTrap::highFivesGuys()
+{
+	std::cout<<"FragTrap "<< mName<< " request high fives to guys."<<std::endl;
 }
 
 FragTrap::~FragTrap()
 {
-	std::cout<<this->name<<" Frag Trap destructor."<<std::endl;
-}
-
-void	FragTrap::rangedAttack(std::string const & target)
-{
-	std::cout<<"FR4G-TP Frag Trap "<< this->name<< " attacks "<< target<< " at range, causing "<<this->rangedAttackDamage;
-	std::cout<<" points of damage!"<<std::endl;
-}
-
-void	FragTrap::meleeAttack(std::string const & target)
-{
-	std::cout<<"FR4G-TP Frag Trap "<< this->name<< " attacks "<< target<< " at melee, causing "<<this->meleeAttackDamage;
-	std::cout<<" points of damage!"<<std::endl;
-}
-
-void	FragTrap::vaulthunter_dot_exe(std::string const & target)
-{
-	if (this->energyPoints < 25)
-		std::cout << this->name << " is lack of "
-			<<"points of energy to!" << std::endl;
-	else
-	{
-		std::cout << "to " << target<< " ";
-		std::cout<<this->quotes[rand() % this->nbrQuotes]<<std::endl;
-		this->energyPoints -= 25;
-	}
+	std::cout<<"FragTrap "<<mName<<" is destructed."<<std::endl;
 }

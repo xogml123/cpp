@@ -1,5 +1,6 @@
 #include "ClapTrap.hpp"
 
+
 ClapTrap::ClapTrap(const std::string& name)
 :mName(name)
 , mHitpoints(10)

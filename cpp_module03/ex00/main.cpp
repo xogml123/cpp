@@ -1,21 +1,19 @@
-#include "FragTrap.hpp"
+#include "ClapTrap.hpp"
 
-int main(void)
+int	main()
 {
-	FragTrap frag("FR4G");
+	ClapTrap ct("ClapTrap 1");
 
-	srand(time(NULL));
-	frag.vaulthunter_dot_exe("CL4P-TP");
-	frag.meleeAttack("CL4P-TP");
-	frag.rangedAttack("CL4P-TP");
-	frag.takeDamage(24);
-	frag.beRepaired(50);
-	frag.takeDamage(42);
-	frag.takeDamage(100);
-	frag.beRepaired(125);
-	frag.vaulthunter_dot_exe("CL4P-TP");
-	frag.vaulthunter_dot_exe("CL4P-TP");
-	frag.vaulthunter_dot_exe("CL4P-TP");
-	frag.vaulthunter_dot_exe("CL4P-TP");
-	return (0);
+	ct.Attack("Enemy 1");
+	ct.TakeDamage(1);
+	ct.BeRepaired(10);
+	ct.TakeDamage(100);
+	ct.BeRepaired(5);
+	ct.BeRepaired(10);
+	ct.Attack("Enemy 1");
+	ct.Attack("Enemy 1");
+	ct.Attack("Enemy 1");
+	ct.Attack("Enemy 1");
+	ct.Attack("Enemy 1");
+	ct.Attack("Enemy 1");
 }

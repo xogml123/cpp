@@ -1,65 +1,72 @@
 #include "ScavTrap.hpp"
 
-std::string const ScavTrap::quotes[ScavTrap::nbrQuotes] = {
-	"Red",
-	"Black",
-	"Coffee",
-	"Fire",
-	"Light"
-};
-
-ScavTrap::ScavTrap()
-:ClapTrap()
-{
-	std::cout<<"no name, Scav Trap constructor."<<std::endl;
-	this->energyPoints = 50;
-	this->maxEnergyPoints = 50;
-	this->meleeAttackDamage = 20;
-	this->rangedAttackDamage = 15;
-	this->armorDamageReduction = 3;
-}
-
-ScavTrap::ScavTrap(std::string const& name)
+ScavTrap::ScavTrap(const std::string& name)
 :ClapTrap(name)
 {
-	std::cout<<this->name<<" Scav Trap constructor."<<std::endl;
-	this->energyPoints = 50;
-	this->maxEnergyPoints = 50;
-	this->meleeAttackDamage = 20;
-	this->rangedAttackDamage = 15;
-	this->armorDamageReduction = 3;
+	mName = name;
+	mHitpoints = 100;
+	mEnergyPoints = 50;
+	mAttackDamage = 20;
+	mMaxHitpoints = 100;
+	mAttackEnergypoints = 11;
+	std::cout<<"ScavTrap "<<mName<<" is created."<<std::endl;
 }
 
-ScavTrap::ScavTrap(ScavTrap const& ft)
+void ScavTrap::Attack(std::string const& target)
 {
-	*this = ft;
+	if (mEnergyPoints - mAttackEnergypoints < 0)
+	{
+		std::cout<<"Not enough energypoints."<<std::endl;
+	}
+	else
+	{
+		std::cout<<"ScavTrap "<< mName<< " attacks " <<target<<" , causing " <<mAttackDamage;
+		std::cout<<" points of damage!"<<std::endl;
+		mEnergyPoints -= mAttackEnergypoints;
+	}
+	
 }
 
-ScavTrap& ScavTrap::operator=(ScavTrap const& ft)
+void ScavTrap::TakeDamage(unsigned int amount)
 {
-	copy(ft);
-	return (*this);
+	int	damage;
+
+	if (mHitpoints - (long long)amount <= 0)
+	{
+		damage = mHitpoints;
+		mHitpoints = 0;
+	}
+	else
+	{
+		damage = (long long)amount;
+		mHitpoints -= (long long)amount;
+	}
+	std::cout<<"ScavTrap "<< mName<< " take "<<damage<< " damage " <<std::endl;
+}
+
+void ScavTrap::BeRepaired(unsigned int amount)
+{
+	int	heal;
+	
+	if (mHitpoints + (long long)amount >= mMaxHitpoints)
+	{
+		heal = mMaxHitpoints - mHitpoints;
+		mHitpoints = mMaxHitpoints;
+	}
+	else
+	{
+		heal = (long long)amount;
+		mHitpoints += (long long)amount;
+	}
+	std::cout<<"ScavTrap "<< mName<< " is "<<heal<< " points repaired. " <<std::endl;	
+}
+
+void ScavTrap::guardGate()
+{
+	std::cout<<"ScavTrap "<< mName<< " have enterred in Gate keeper mode."<<std::endl;
 }
 
 ScavTrap::~ScavTrap()
 {
-	std::cout<<this->name<<" Scav Trap destructor."<<std::endl;
-}
-
-void	ScavTrap::rangedAttack(std::string const & target)
-{
-	std::cout<<"FR4G-TP Scav Trap"<< this->name<< " attacks "<< target<< " at range, causing "<<this->rangedAttackDamage;
-	std::cout<<" points of damage!"<<std::endl;
-}
-
-void	ScavTrap::meleeAttack(std::string const & target)
-{
-	std::cout<<"FR4G-TP Scav Trap"<< this->name<< " attacks "<< target<< " at melee, causing "<<this->meleeAttackDamage;
-	std::cout<<" points of damage!"<<std::endl;
-}
-
-void	ScavTrap::challengeNewcomer()
-{
-	
-	std::cout<<this->quotes[rand() % this->nbrQuotes]<<std::endl;
+	std::cout<<"ScavTrap "<<mName<<" is destructed."<<std::endl;
 }

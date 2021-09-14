@@ -10,7 +10,7 @@ class ClapTrap{
 		void TakeDamage(unsigned int amount);
 		void BeRepaired(unsigned int amount);
 		virtual ~ClapTrap();
-	protected:
+	private:
 		std::string	mName;
 		long long	mHitpoints;
 		long long	mEnergyPoints;

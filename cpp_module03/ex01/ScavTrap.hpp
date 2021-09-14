@@ -1,33 +1,16 @@
-#ifndef SCAV_TRAP_HPP
-# define SCAV_TRAP_HPP
-#include <string>
-#include <iostream>
-#include <ctime>
-#include <cstdlib>
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
-class ScavTrap{
-	private:
-		static const int	nbrQuotes = 5;
-		static const std::string	quotes[nbrQuotes];
-		int	hitPoints;
-		int 	maxHitPoints;
-		int	energyPoints;
-		int	maxEnergyPoints;
-		int	level;
-		std::string		name;
-		int	meleeAttackDamage;
-		int	rangedAttackDamage;
-		int	armorDamageReduction;
+#include "ClapTrap.hpp"
+
+class ScavTrap: public ClapTrap{
 	public:
-		ScavTrap();
-		ScavTrap(ScavTrap const& ft);
 		ScavTrap(std::string const& name);
-		virtual	~ScavTrap();
-		ScavTrap& operator=(ScavTrap const& ft);
-		void	rangedAttack(std::string const & target);
-		void	meleeAttack(std::string const & target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
-		void	challengeNewcomer();
+		~ScavTrap();
+		void Attack(std::string const& target);
+		void TakeDamage(unsigned int amount);
+		void BeRepaired(unsigned int amount);
+		void guardGate();
 };
+
 #endif

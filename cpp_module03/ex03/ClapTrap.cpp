@@ -1,93 +1,66 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap()
-:hitPoints(100), maxHitPoints(100), energyPoints(100),
-	maxEnergyPoints(100), level(1), name(std::string()),
-	meleeAttackDamage(100), rangedAttackDamage(100),
-	armorDamageReduction(100)
+ClapTrap::ClapTrap(const std::string& name)
+:mName(name)
+, mHitpoints(10)
+, mEnergyPoints(10)
+, mAttackDamage(0)
+, mMaxHitpoints(10)
+, mAttackEnergypoints(2)
 {
-	std::cout<<"no name, Clap Trap constructor."<<std::endl;
+	std::cout<<"ClapTrap "<<mName<<" is created."<<std::endl;
 }
 
-ClapTrap::ClapTrap(std::string const& name)
-:hitPoints(100), maxHitPoints(100), energyPoints(100),
-	maxEnergyPoints(100), level(1), name(name),
-	meleeAttackDamage(100), rangedAttackDamage(100),
-	armorDamageReduction(100)
+void ClapTrap::Attack(std::string const& target)
 {
-	std::cout<<this->name<<" Clap Trap constructor."<<std::endl;
+	if (mEnergyPoints - mAttackEnergypoints < 0)
+	{
+		std::cout<<"Not enough energypoints."<<std::endl;
+	}
+	else
+	{
+		std::cout<<"ClapTrap "<< mName<< " attacks " <<target<<" , causing " <<mAttackDamage;
+		std::cout<<" points of damage!"<<std::endl;
+		mEnergyPoints -= mAttackEnergypoints;
+	}
+	
 }
 
-ClapTrap::ClapTrap(ClapTrap const& ft)
+void ClapTrap::TakeDamage(unsigned int amount)
 {
-	*this = ft;
+	int	damage;
+
+	if (mHitpoints - (long long)amount <= 0)
+	{
+		damage = mHitpoints;
+		mHitpoints = 0;
+	}
+	else
+	{
+		damage = (long long)amount;
+		mHitpoints -= (long long)amount;
+	}
+	std::cout<<"ClapTrap "<< mName<< " take "<<damage<< " damage " <<std::endl;
 }
 
-ClapTrap& ClapTrap::operator=(ClapTrap const& ft)
+void ClapTrap::BeRepaired(unsigned int amount)
 {
-	copy(ft);
-	return (*this);
-}
-
-void	ClapTrap::copy(ClapTrap const& ft)
-{
-	hitPoints = ft.hitPoints;
-	maxHitPoints = ft.maxHitPoints;
-	energyPoints = ft.energyPoints;
-	maxEnergyPoints = ft.maxEnergyPoints;
-	level = ft.level;
-	name = ft.level;
-	meleeAttackDamage = ft.meleeAttackDamage;
-	rangedAttackDamage = ft.rangedAttackDamage;
-	armorDamageReduction = ft.armorDamageReduction;
+	int	heal;
+	
+	if (mHitpoints + (long long)amount >= mMaxHitpoints)
+	{
+		heal = mMaxHitpoints - mHitpoints;
+		mHitpoints = mMaxHitpoints;
+	}
+	else
+	{
+		heal = (long long)amount;
+		mHitpoints += (long long)amount;
+	}
+	std::cout<<"ClapTrap "<< mName<< " is "<<heal<< " points repaired. " <<std::endl;	
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout<<this->name<<" Clap Trap destructor."<<std::endl;
+	std::cout<<"ClapTrap "<<mName<<" is destructed."<<std::endl;
 }
-
-void	ClapTrap::rangedAttack(std::string const & target)
-{
-	std::cout<<"FR4G-TP Clap Trap"<< this->name<< " attacks "<< target<< " at range, causing "<<this->rangedAttackDamage;
-	std::cout<<" points of damage!"<<std::endl;
-}
-
-void	ClapTrap::meleeAttack(std::string const & target)
-{
-	std::cout<<"FR4G-TP Clap Trap"<< this->name<< " attacks "<< target<< " at melee, causing "<<this->meleeAttackDamage;
-	std::cout<<" points of damage!"<<std::endl;
-}
-
-void	ClapTrap::takeDamage(unsigned int amount)
-{
-	int deal = (int)amount - this->armorDamageReduction;
-	if (this->hitPoints <= deal)
-	{
-		deal = this->hitPoints - 0;
-		this->hitPoints = 0;
-	}
-	else
-		this->hitPoints -= deal;
-	std::cout << this->name << "take "
-			<< deal << " points of damage!" << std::endl;
-}
-
-void	ClapTrap::beRepaired(unsigned int amount)
-{
-	if (this->hitPoints + (int)amount >= this->maxHitPoints)
-	{
-		amount = this->maxHitPoints - this->hitPoints;
-		this->hitPoints = this->maxHitPoints;
-	}
-	else
-		this->hitPoints += amount;
-	std::cout << this->name << "be repaired "
-			<< amount << " points of amount!" << std::endl;
-}
-
-std::string const& ClapTrap::getName() const
-{
-	return (this->name);
-}
-

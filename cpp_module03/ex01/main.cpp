@@ -1,38 +1,21 @@
-#include "FragTrap.hpp"
 #include "ScavTrap.hpp"
 
-int main(void)
+int	main()
 {
-	FragTrap frag("FR4G");
-	ScavTrap scav("SC4V");
+	ScavTrap st("st1");
 
-	srand(time(NULL));
-	frag.vaulthunter_dot_exe("CL4P-TP");
-	frag.meleeAttack("CL4P-TP");
-	frag.rangedAttack("CL4P-TP");
-	frag.takeDamage(24);
-	frag.beRepaired(50);
-	frag.takeDamage(42);
-	frag.takeDamage(100);
-	frag.beRepaired(125);
-	frag.vaulthunter_dot_exe("CL4P-TP");
-	frag.vaulthunter_dot_exe("CL4P-TP");
-	frag.vaulthunter_dot_exe("CL4P-TP");
-	frag.vaulthunter_dot_exe("CL4P-TP");
+	st.Attack("Enemy1");
+	st.TakeDamage(10);
+	st.BeRepaired(100);
+	st.TakeDamage(100);
+	st.BeRepaired(50);
+	st.BeRepaired(100);
+	st.Attack("Enemy1");
+	st.Attack("Enemy1");
+	st.Attack("Enemy1");
+	st.Attack("Enemy1");
+	st.Attack("Enemy1");
+	st.Attack("Enemy1");
+	st.guardGate();
 
-	std::cout << "------------------------------------" << std::endl;
-
-	scav.challengeNewcomer();
-	scav.meleeAttack("CL4P-TP");
-	scav.rangedAttack("CL4P-TP");
-	scav.takeDamage(24);
-	scav.beRepaired(50);
-	scav.takeDamage(42);
-	scav.takeDamage(100);
-	scav.beRepaired(125);
-	scav.challengeNewcomer();
-	scav.challengeNewcomer();
-	scav.challengeNewcomer();
-	scav.challengeNewcomer();
-	return (0);
 }
