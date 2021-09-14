@@ -6,9 +6,9 @@
 class ClapTrap{
 	public:
 		ClapTrap(const std::string& name);
-		void Attack(std::string const& target);
-		void TakeDamage(unsigned int amount);
-		void BeRepaired(unsigned int amount);
+		virtual void Attack(std::string const& target);
+		virtual void TakeDamage(unsigned int amount);
+		virtual void BeRepaired(unsigned int amount);
 		virtual ~ClapTrap();
 	protected:
 		std::string	mName;
