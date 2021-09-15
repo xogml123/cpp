@@ -1,4 +1,4 @@
-#ifndef ICHARACtER_HPP
+#ifndef ICHARACTER_HPP
 # define ICHARACTER_HPP
 
 #include <string>
