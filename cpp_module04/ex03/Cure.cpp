@@ -1,16 +1,16 @@
 #include "Cure.hpp"
 
 Cure::Cure()
-:AMateria("Cure")
+:AMateria("cure")
 {}
 
-AMateria* Cure::clone() const
+Cure* Cure::clone() const
 {
-	AMateria* ret= new Cure();
+	Cure* ret= new Cure();
 	return (ret);
 }
 
-void use(ICharacter& target)
+void Cure::use(ICharacter& target)
 {
 	std::cout<<"* heals "<<target.getName()<<"’s wounds *"<<std::endl;
 }

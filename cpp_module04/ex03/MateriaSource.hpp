@@ -2,7 +2,7 @@
 # define MATERIASOURCE_HPP
 
 #include "IMateriaSource.hpp"
-
+#include "AMateria.hpp"
 class MateriaSource : public IMateriaSource
 {
 	public:
@@ -11,8 +11,8 @@ class MateriaSource : public IMateriaSource
 		void learnMateria(AMateria* am);
 		AMateria* createMateria(std::string const & type);
 	private:
-		AMateria*	mInventory[sInventory_size];
-		static const int	sMemorySize;
+		static const int	sMemorySize = 4;
+		AMateria*	mInventory[sMemorySize];
 		int					index;
 };
 

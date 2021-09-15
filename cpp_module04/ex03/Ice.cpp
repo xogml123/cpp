@@ -1,17 +1,17 @@
 #include "Ice.hpp"
 
 Ice::Ice()
-:AMateria("Ice")
+:AMateria("ice")
 {}
 
-AMateria* Ice::clone() const
+Ice* Ice::clone() const
 {
-	AMateria* ret= new Ice();
+	Ice* ret= new Ice();
 	return (ret);
 }
 
-void use(ICharacter& target)
+void Ice::use(ICharacter& target)
 {
-	std::cout<< "* heals"<<target.getName()<<"’s wounds *"<<std::endl;
+	std::cout<< "* shoots an ice bolt at "<<target.getName()<<" *"<<std::endl;
 }
 
