@@ -1,7 +1,7 @@
 NAME=a.out
-SRCS=main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp Unequiped.cpp
+SRCS=main.cpp Bureaucrat.cpp
 OBJS=$(SRCS:.cpp=.o)
-CPPFLAGS= -Wall -W -Werror -std=c++98 
+CPPFLAGS= -Wall -W -Werror -std=c++98
 CPP=clang++
 RM=rm
 all:$(NAME)

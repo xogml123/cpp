@@ -32,6 +32,8 @@ std::string const& Character::getName() const
 
 void Character::equip(AMateria* m)
 {
+	if (!m)
+		return ;
 	for (int i = 0; i < sInventorySize; i++)
 	{
 		if (!mInventory[i])
