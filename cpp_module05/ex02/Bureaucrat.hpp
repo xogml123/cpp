@@ -12,12 +12,14 @@ class Bureaucrat{
 		Bureaucrat(const std::string& name, int grade);
 		Bureaucrat(const Bureaucrat& bureaucrat);
 		Bureaucrat& operator=(Bureaucrat const& bureaucrat);
-		~Bureaucrat();
+		virtual ~Bureaucrat();
 		std::string	getName() const;
 		int			getGrade()const ;
 		void		incrementGrade(int change);
 		void		decrementGrade(int change);
 		void 		signForm(Form& form) const;
+		void		executeForm(Form const & form);
+
 		class GradeTooHighException:public std::exception
 		{
 			public:
@@ -46,7 +48,6 @@ class Bureaucrat{
 		const std::string mName;
 		int mGrade;
 		int isValidGrade(int grade);
-	
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);

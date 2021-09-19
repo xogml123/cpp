@@ -15,16 +15,17 @@ class Bureaucrat{
 		int			getGrade()const ;
 		void		incrementGrade(int change);
 		void		decrementGrade(int change);
+
 		class GradeTooHighException:public std::exception
 		{
 			public:
 				GradeTooHighException()
 				{}
-				const char* what() const _NOEXCEPT
+				const char* what() const throw()
 				{
 					return ("GradeTooHighException");
 				}
-				~GradeTooHighException() _NOEXCEPT{}
+				~GradeTooHighException() throw(){}
 		};
 		class GradeTooLowException:public std::exception
 		{
@@ -32,13 +33,14 @@ class Bureaucrat{
 			public:
 				GradeTooLowException()
 				{}
-				const char* what() const _NOEXCEPT
+				const char* what() const throw()
 				{
 					return ("GradeTooLowException");
 				}
-				~GradeTooLowException() _NOEXCEPT{} 
+				~GradeTooLowException() throw(){} 
 		};
 	private:
+		Bureaucrat();
 		const std::string mName;
 		int mGrade;
 		int isValidGrade(int grade);

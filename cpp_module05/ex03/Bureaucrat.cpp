@@ -60,12 +60,32 @@ int Bureaucrat::isValidGrade(int grade)
 		return (1);
 }
 
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
+void Bureaucrat::signForm(Form& form) const 
 {
-	std::cout<<bureaucrat.getName()<<", bureaucrat grade "<<bureaucrat.getGrade()<<std::endl;
-	return (os);
+	if (form.getSigned() == true)
+	{
+		std::cout << *this << " signs " << form << std::endl;
+	} 
+	else
+	{
+		std::cout << *this << " cannot sign " << form
+				  << " because grade is too low" << std::endl;
+	}
 }
+
+void	Bureaucrat::executeForm(Form const & form)
+{
+	form.execute(*this);
+	std::cout<<mName<<" executes "<<form<<std::endl;
+}
+
 
 Bureaucrat::Bureaucrat()
 {}
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
+{
+	std::cout<<bureaucrat.getName();
+	return (os);
+}
 

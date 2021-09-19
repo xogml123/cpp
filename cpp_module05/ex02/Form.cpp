@@ -68,7 +68,17 @@ std::ostream& operator<<(std::ostream& os, Form const& form)
 	return os;
 }
 
+bool	Form::isExecutable(int grade) const
+{
+	if (grade > mGradeExecute || mSigned == false)
+		return (false);
+	else
+		return (true);
+}
+
 Form::Form()
 :mGradeSign(0)
 , mGradeExecute(0)
 {}
+
+

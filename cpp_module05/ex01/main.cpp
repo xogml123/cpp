@@ -1,22 +1,23 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int	main()
 {
 	Bureaucrat* b1 = NULL;
-	Bureaucrat* b2 = NULL;
+	Form* f1 = NULL;
 	try
 	{
-		b1 = new Bureaucrat("tom", 10);
-		b2 = new Bureaucrat("james", 140);
-		b1->incrementGrade(200);
-		b2->decrementGrade(30);
+		b1 = new Bureaucrat("tom", 30);
+		f1 = new Form("tom's Form", 20, 30);
+		f1->beSigned(*b1);
+		b1->signForm(*f1);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
 	}
 	delete b1;
-	delete b2;
+	delete f1;
 	
 	
 	

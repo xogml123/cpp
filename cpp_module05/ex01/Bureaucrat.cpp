@@ -33,7 +33,7 @@ int			Bureaucrat::getGrade() const
 }
 void		Bureaucrat::incrementGrade(int change)
 {
-	int grade = mGrade + change;
+	int grade = mGrade - change;
 	if (isValidGrade(grade) == 1)
 		throw GradeTooHighException();
 	else if (isValidGrade(grade) == -1)
@@ -42,7 +42,7 @@ void		Bureaucrat::incrementGrade(int change)
 }
 void		Bureaucrat::decrementGrade(int change)
 {
-	int grade = mGrade - change;
+	int grade = mGrade + change;
 	if (isValidGrade(grade) == 1)
 		throw GradeTooHighException();
 	else if (isValidGrade(grade) == -1)
@@ -55,13 +55,27 @@ int Bureaucrat::isValidGrade(int grade)
 	if (grade >= 1 && grade <= 150)
 		return (0);
 	else if (grade > 150)
-		return (1);
-	else
 		return (-1);
+	else
+		return (1);
 }
 
+void Bureaucrat::signForm(Form& form) const 
+{
+	if (form.getSigned() == true)
+	{
+		std::cout << *this << " signs " << form << std::endl;
+	} 
+	else
+	{
+		std::cout << *this << " cannot sign " << form
+				  << " because grade is too low" << std::endl;
+	}
+}
+Bureaucrat::Bureaucrat()
+{}
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
 {
-	std::cout<<bureaucrat.getName()<<", bureaucrat grade "<<bureaucrat.getGrade()<<std::endl;
+	std::cout<<bureaucrat.getName();
 	return (os);
 }
