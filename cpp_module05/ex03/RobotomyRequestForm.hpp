@@ -10,7 +10,7 @@ class RobotomyRequestForm : public Form{
 		RobotomyRequestForm(const RobotomyRequestForm& scf);
 		RobotomyRequestForm& operator=(const RobotomyRequestForm& scf);
 		virtual ~RobotomyRequestForm();
-		void execute(Bureaucrat const & executor) const;
+		void execute(Bureaucrat const & executor);
 		const std::string& getTarget() const;
 		class RobotomizedFailed: public std::exception {
 		public:

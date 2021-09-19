@@ -34,11 +34,11 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {}
 
-void ShrubberyCreationForm::execute(Bureaucrat const & executor)const
+void ShrubberyCreationForm::execute(Bureaucrat const & executor)
 {
 	std::string fileName = mTarget + "_shrubbery";
 	std::ofstream os;
-	
+	this->beSigned(executor);
 	if (!isExecutable(executor.getGrade()))
 		throw GradeTooLowException();
 	else

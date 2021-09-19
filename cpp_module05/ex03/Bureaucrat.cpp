@@ -73,7 +73,7 @@ void Bureaucrat::signForm(Form& form) const
 	}
 }
 
-void	Bureaucrat::executeForm(Form const & form)
+void	Bureaucrat::executeForm(Form& form)
 {
 	form.execute(*this);
 	std::cout<<mName<<" executes "<<form<<std::endl;

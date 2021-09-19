@@ -3,34 +3,31 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
+
 int	main()
 {
-	Bureaucrat* b1 = NULL;
-	Form* f1 = NULL;
-	Form* f2 = NULL;
-	Form* f3 = NULL;
-	try
-	{
-		b1 = new Bureaucrat("tom", 1);
-		f1 = new ShrubberyCreationForm("tomForm");
-		f2 = new RobotomyRequestForm("johnForm");
-		f3 = new PresidentialPardonForm("jamesForm");
-		f1->beSigned(*b1);
-		f2->beSigned(*b1);
-		f3->beSigned(*b1);
-		b1->executeForm(*f1);
-		b1->executeForm(*f2);
-		b1->executeForm(*f3);
+	try{
+		Bureaucrat bu("tom", 1);
+		Intern someRandomIntern;
+		Form* rrf;
+		rrf = someRandomIntern.makeForm("shrubberry creation", "Bender");
+		bu.executeForm(*rrf);
+		delete rrf;
+		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+		bu.executeForm(*rrf);
+		delete rrf;
+		rrf = someRandomIntern.makeForm("presidential pardon", "Bender");
+		bu.executeForm(*rrf);
+		delete rrf;
+		rrf = someRandomIntern.makeForm("none", "Bender");
+		bu.executeForm(*rrf);
+		delete rrf;
 	}
-	catch(const std::exception& e)
+	catch (const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cout<<e.what()<<std::endl;
 	}
-	delete b1;
-	delete f1;
-	delete f2;
-	delete f3;
-	
 	
 	
 
