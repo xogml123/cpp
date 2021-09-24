@@ -1,16 +1,26 @@
 #ifndef EASYFIND_HPP
 # define EASYFIND_HPP
-
+#include <string>
+#include <exception>
 #include <vector>
+#include <iostream>
+class BadArgumentException : public std::exception
+{
+	public:
+		const char * what() const throw()
+		{
+			return "Not found element in container";
+		}
+};
 
 template <typename T>
-T	easyfind(T container, int target)
+typename T::const_iterator easyfind(const T & container, const int & elem)
 {
-	for (std::vector<int>::iterator itr = container.begin(); itr != container.end(); i++)
-	{
-		if (*itr == target)
-			return (*itr);
-	}
-}
+	typename T::const_iterator iter;
+	iter = std::find(container.begin(), container.end(), elem);
+	if (iter == container.end())
+		throw BadArgumentException();
+	return iter;
+};
 
 #endif
