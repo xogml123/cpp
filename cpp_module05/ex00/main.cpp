@@ -6,10 +6,10 @@ int	main()
 	Bureaucrat* b2 = NULL;
 	try
 	{
-		b1 = new Bureaucrat("tom", 10);
-		b2 = new Bureaucrat("james", 140);
-		b1->incrementGrade(200);
-		b2->decrementGrade(30);
+		b1 = new Bureaucrat("tom", 2);
+		b2 = new Bureaucrat("james", 149);
+		b1->incrementGrade();
+		b2->decrementGrade();
 	}
 	catch(const std::exception& e)
 	{

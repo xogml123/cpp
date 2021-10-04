@@ -31,18 +31,18 @@ int			Bureaucrat::getGrade() const
 {
 	return (this->mGrade);
 }
-void		Bureaucrat::incrementGrade(int change)
+void		Bureaucrat::incrementGrade()
 {
-	int grade = mGrade - change;
+	int grade = mGrade - 1;
 	if (isValidGrade(grade) == 1)
 		throw GradeTooHighException();
 	else if (isValidGrade(grade) == -1)
 		throw GradeTooLowException();
 	mGrade = grade;
 }
-void		Bureaucrat::decrementGrade(int change)
+void		Bureaucrat::decrementGrade()
 {
-	int grade = mGrade + change;
+	int grade = mGrade + 1;
 	if (isValidGrade(grade) == 1)
 		throw GradeTooHighException();
 	else if (isValidGrade(grade) == -1)

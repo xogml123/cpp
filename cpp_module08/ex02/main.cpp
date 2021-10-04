@@ -1,5 +1,6 @@
 #include "MutantStack.hpp"
 #include <iostream>
+#include <stack>
 
 int main()
 {
@@ -23,6 +24,12 @@ int main()
 	std::cout << *it << std::endl;
 	++it;
 	}
+	std::cout<<"---------------------------"<<std::endl;
 	std::stack<int> s(mstack);
+	while (!s.empty())
+	{
+		std::cout << s.top() << std::endl;
+		s.pop();
+	}
 	return 0;
 }
