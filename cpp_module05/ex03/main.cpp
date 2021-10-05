@@ -7,28 +7,44 @@
 
 int	main()
 {
+	Form* rrf1 = NULL;
+	Form* rrf2 = NULL;
+	Form* rrf3 = NULL;
+	Form* rrf4 = NULL;
+
+	Intern someRandomIntern;
+	Bureaucrat*	bu;
 	try{
-		Bureaucrat bu("tom", 1);
-		Intern someRandomIntern;
-		Form* rrf;
-		rrf = someRandomIntern.makeForm("shrubberry creation", "Bender");
-		bu.executeForm(*rrf);
-		delete rrf;
-		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-		bu.executeForm(*rrf);
-		delete rrf;
-		rrf = someRandomIntern.makeForm("presidential pardon", "Bender");
-		bu.executeForm(*rrf);
-		delete rrf;
-		rrf = someRandomIntern.makeForm("none", "Bender");
-		bu.executeForm(*rrf);
-		delete rrf;
+		bu = new Bureaucrat("tom", 1);
 	}
 	catch (const std::exception& e)
 	{
 		std::cout<<e.what()<<std::endl;
+		delete bu;
+		return (1);
 	}
-	
-	
+	try{
+		rrf1 = someRandomIntern.makeForm("shrubberry creation", "Bender");
+		rrf2 = someRandomIntern.makeForm("robotomy request", "Bender");
+		rrf3 = someRandomIntern.makeForm("presidential pardon", "Bender");
+		//rrf4 = someRandomIntern.makeForm("none", "Bender");
+	}
+	catch (const std::exception& e)
+	{
+		std::cout<<e.what()<<std::endl;
+		delete rrf1;
+		delete rrf2;
+		delete rrf3;
+		delete rrf4;
+		return (1);
+	}
 
+	bu->executeForm(*rrf1);
+	bu->executeForm(*rrf2);
+	bu->executeForm(*rrf3);
+	//bu->executeForm(*rrf4);
+	delete rrf1;
+	delete rrf2;
+	delete rrf3;
+	delete rrf4;
 }

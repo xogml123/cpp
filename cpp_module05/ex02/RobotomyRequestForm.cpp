@@ -24,7 +24,6 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 void RobotomyRequestForm::execute(Bureaucrat const & executor)const
 {
-
 	if (!isExecutable(executor.getGrade()))
 		throw GradeTooLowException();
 	else

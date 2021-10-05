@@ -15,9 +15,9 @@ class Bureaucrat{
 		~Bureaucrat();
 		std::string	getName() const;
 		int			getGrade()const ;
-		void		incrementGrade(int change);
-		void		decrementGrade(int change);
-		void 		signForm(Form& form) const;
+		void		incrementGrade();
+		void		decrementGrade();
+		void 		signForm(Form& form);
 		class GradeTooHighException:public std::exception
 		{
 			public:
@@ -25,7 +25,7 @@ class Bureaucrat{
 				{}
 				const char* what() const throw()
 				{
-					return ("GradeTooHighException");
+					return ("GradeTooHighException: Bureaucrat");
 				}
 				~GradeTooHighException() throw(){}
 		};
@@ -37,7 +37,7 @@ class Bureaucrat{
 				{}
 				const char* what() const throw()
 				{
-					return ("GradeTooLowException");
+					return ("GradeTooLowException: Bureaucrat");
 				}
 				~GradeTooLowException() throw(){} 
 		};

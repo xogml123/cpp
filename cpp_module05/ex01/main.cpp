@@ -7,9 +7,8 @@ int	main()
 	Form* f1 = NULL;
 	try
 	{
-		b1 = new Bureaucrat("tom", 30);
-		f1 = new Form("tom's Form", 20, 30);
-		f1->beSigned(*b1);
+		b1 = new Bureaucrat("tom", 50);
+		f1 = new Form("tom's Form", 40, 30);
 		b1->signForm(*f1);
 	}
 	catch(const std::exception& e)
@@ -18,8 +17,6 @@ int	main()
 	}
 	delete b1;
 	delete f1;
-	
-	
 	
 
 }

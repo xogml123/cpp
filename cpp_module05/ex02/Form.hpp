@@ -26,7 +26,7 @@ class Form{
 				{}
 				const char* what() const throw()
 				{
-					return ("GradeTooHighException");
+					return ("GradeTooHighException:Form");
 				}
 				~GradeTooHighException() throw(){}
 		};
@@ -38,7 +38,7 @@ class Form{
 				{}
 				const char* what() const throw()
 				{
-					return ("GradeTooLowException");
+					return ("GradeTooLowException:Form");
 				}
 				~GradeTooLowException() throw(){} 
 		};

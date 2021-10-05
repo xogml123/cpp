@@ -38,7 +38,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor)const
 {
 	std::string fileName = mTarget + "_shrubbery";
 	std::ofstream os;
-	
+
 	if (!isExecutable(executor.getGrade()))
 		throw GradeTooLowException();
 	else

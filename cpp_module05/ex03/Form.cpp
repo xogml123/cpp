@@ -10,6 +10,8 @@ Form::Form(const std::string& name, int gradeSign, int gradeExecute)
 		throw GradeTooHighException();
 	else if ((isValidGrade(gradeSign) == -1) || (isValidGrade(gradeExecute) == -1))
 		throw GradeTooLowException();
+	if (gradeSign < gradeExecute)
+		throw GradeTooLowException();
 }
 
 Form::Form(const Form& form)
@@ -70,7 +72,7 @@ std::ostream& operator<<(std::ostream& os, Form const& form)
 
 bool	Form::isExecutable(int grade) const
 {
-	if (grade > mGradeExecute || mSigned == false)
+	if (grade > mGradeExecute)
 		return (false);
 	else
 		return (true);

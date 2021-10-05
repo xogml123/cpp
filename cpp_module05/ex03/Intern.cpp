@@ -52,7 +52,5 @@ Form*	 Intern::makeForm(const std::string& formName, const std::string& target) 
 			return (form);
 		}
 	}
-	throw Intern::BadFormException();
-	return (form);
-	
+	throw BadFormNameException();
 }

@@ -22,9 +22,8 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& s
 RobotomyRequestForm::~RobotomyRequestForm()
 {}
 
-void RobotomyRequestForm::execute(Bureaucrat const & executor)
+void RobotomyRequestForm::execute(Bureaucrat const & executor)const
 {
-	this->beSigned(executor);
 	if (!isExecutable(executor.getGrade()))
 		throw GradeTooLowException();
 	else

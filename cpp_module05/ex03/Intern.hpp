@@ -3,7 +3,7 @@
 
 #include "Form.hpp"
 #include <string>
-
+class Form;
 class Intern{
 	typedef Form* (*makeF)(const std::string&);
 
@@ -13,12 +13,12 @@ class Intern{
 		Intern& operator=(const Intern& it);
 		~Intern();
 		Form*	 makeForm(const std::string& formName, const std::string& target) const;
-		class BadFormException: public std::exception
+		class BadFormNameException: public std::exception
 		{
 			public:
 				virtual const char* what() const throw()
 				{
-					return "Form is unknown";
+					return "Form name is unknown";
 				}
 		};
 	private:
