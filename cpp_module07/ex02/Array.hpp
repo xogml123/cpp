@@ -21,6 +21,7 @@ class Array{
 		Array<T>(const Array& array);
 		Array&	operator=(const Array& array);
 		T&		operator[](int size);
+		const T& operator[](int size) const;
 		unsigned int	size() const;
 		~Array();
 

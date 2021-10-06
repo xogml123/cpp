@@ -8,7 +8,6 @@ uintptr_t serialize(Data *ptr)
 	intpointer = reinterpret_cast<uintptr_t>(ptr);
 	return intpointer;
 }
-
 Data *deserialize(uintptr_t raw)
 {
 	Data *ptr;

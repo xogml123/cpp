@@ -35,7 +35,6 @@ void identify(Base *p)
 void identify(Base &p)
 {
 
-
 	// if (dynamic_cast<A&>(p))
 	// 	std::cout << "A" << std::endl;
 	// if (dynamic_cast<B&>(p))

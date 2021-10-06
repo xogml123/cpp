@@ -15,6 +15,8 @@ Array<T>::Array(unsigned int size)
 template<typename T>
 Array<T>::Array(const Array<T>& array)
 {
+	mContent = NULL;
+	mSize = 0;
 	*this = array;
 }
 
@@ -23,7 +25,7 @@ Array<T>& Array<T>::operator=(const Array<T>& array)
 {
 	delete [] mContent;
 	mContent = new T[array.size()];
-	for (int i = 0; i < array.size(); i++)
+	for (unsigned int i = 0; i < array.size(); i++)
 		mContent[i] = array[i];
 	mSize = array.size();
 	return (*this);
@@ -36,6 +38,14 @@ T&		Array<T>::operator[](int size)
 		throw IndexOutOfRange();
 	return (mContent[size]);
 }
+template<typename T>
+const T& Array<T>::operator[](int size) const
+{
+	if (size < 0 || size >= (int)mSize)
+		throw IndexOutOfRange();
+	return (mContent[size]);
+}
+
 
 template<typename T>
 unsigned int	Array<T>::size() const
@@ -51,15 +61,26 @@ Array<T>::~Array()
 
 int main()
 {
-    Array<float> ok(9);
-
+    Array<int> ok(9);
     try {
 		for (unsigned int i = 0; i < ok.size(); i++)
 			ok[i] = i;
-   		std::cout << ok[2] << std::endl;
     }
     catch(const std::exception&e) {
 		std::cerr << e.what() << '\n';
     }
+
+	for (unsigned int i = 0; i < ok.size(); i++)
+		std::cout<<ok[i]<<std::endl;
+	std::cout<<"copy version-----------------------"<<std::endl;
+	Array<int> okCpy(ok);
+	for (unsigned int i = 0; i < ok.size(); i++)
+		std::cout<<okCpy[i]<<std::endl;
+	std::cout<<"operator version-----------------------"<<std::endl;
+	
+	Array<int> okOperator;
+	okOperator = okCpy;
+	for (unsigned int i = 0; i < ok.size(); i++)
+		std::cout<<okOperator[i]<<std::endl;
 	return (0);
 }
