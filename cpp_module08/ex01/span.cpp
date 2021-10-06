@@ -1,59 +1,72 @@
 #include "span.hpp"
+#include <vector>
+#include <algorithm>
 
-Span::Span(unsigned int n)
-:N(n)
-, contents(0)
+Span::Span()
+{
+	
+}
+
+Span::Span(unsigned int n):n(n)
 {
 
 }
 
-Span::Span(std::vector<int>::iterator begin, std::vector<int>::iterator end)
-:contents(begin, end)
-{}
+Span::Span(Span const &other)
+{
+	*this = other;
+}
+
+Span::~Span()
+{
+
+}
+
+Span &Span::operator=(Span const &other)
+{
+	n = other.n;
+	vector = other.vector;
+	return (*this);
+}
 
 void Span::addNumber(int num)
 {
-	if (contents.size() == N)
-		throw FullElementException();
-	else
-	{
-		contents.push_back(num);
-	}
-	return ;
+	if (vector.size() == (unsigned long)n)
+		throw OutLimitsException();
+	vector.push_back(num);
 }
-unsigned int Span::shortestSpan()const
+
+long Span::shortestSpan()
 {
-	if (contents.size() == 0 || contents.size() == 1)
+	if (vector.size() <= 1)
 		throw NoSpanException();
-	else
-	{
-		std::vector<int> contentsCopy(contents);
-		std::vector<int> contentsCopyDiff;
-
-		sort(contentsCopy.begin(), contentsCopy.end());
-		for (std::vector<int>::size_type i = 0; i < contentsCopy.size() - 1; i++)
-		{
-			contentsCopyDiff.push_back(contentsCopy[i + 1] - contentsCopy[i]);
-		}
-		int minIndex = 0;
-
-		for (std::vector<int>::size_type i = 0; i < contentsCopyDiff.size(); i++)
-		{
-			if (contentsCopyDiff[i] < contentsCopyDiff[minIndex])
-				minIndex = i;
-		}
-		return (contentsCopyDiff[minIndex]);
-	}
 	
+	std::vector<int> sorted_vector(vector);
+	std::sort(sorted_vector.begin(), sorted_vector.end());
+	
+	long ret = (long)sorted_vector[1] - (long)sorted_vector[0];
+	for (unsigned long i = 1; i < sorted_vector.size()-1; i++)
+		ret = std::min(ret, (long)sorted_vector[i+1]-(long)sorted_vector[i]);
+	return (ret);
 }
-unsigned int Span::longestSpan()const
+
+long Span::longestSpan()
 {
-	std::vector<int> contentsCopy(contents);
-
-	if (contents.size() == 0 || contents.size() == 1)
+	if (vector.size() <= 1)
 		throw NoSpanException();
-	sort(contentsCopy.begin(), contentsCopy.end());
-
-	return (contentsCopy[contentsCopy.size() - 1] - contentsCopy[0]);
 	
+	long max = *std::max_element(vector.begin(), vector.end());
+	long min = *std::min_element(vector.begin(), vector.end());
+
+	return (max - min);
+}
+
+const char* Span::OutLimitsException::what() const throw()
+{
+	return "there is no enough space.";
+}
+
+const char* Span::NoSpanException::what() const throw()
+{
+	return "there is no span.";
 }

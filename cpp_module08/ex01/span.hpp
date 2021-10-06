@@ -1,36 +1,37 @@
 #ifndef SPAN_HPP
-# define SPAN_HPP
+#define SPAN_HPP
 
-#include <iostream>
-#include <exception>
 #include <vector>
-#include <algorithm>
-#include <cstdlib>
-#include <ctime>
-
-#define numberofElement 100
 
 class Span
 {
+	private:
+		Span();
 	public:
 		Span(unsigned int n);
-		Span(std::vector<int>::iterator begin, std::vector<int>::iterator end);
-		void addNumber(int num) ;
-		unsigned int shortestSpan()const ;
-		unsigned int longestSpan()const;
-	class FullElementException: public std::exception{
-		const char* what() const throw(){
-			return "full of element. cannot add number.";
+		Span(Span const &other);
+		virtual ~Span();
+		Span &operator=(Span const &other);
+
+		void addNumber(int num);
+		template<class T>
+		void addNumber(T begin, T end)
+		{
+			if (vector.size() + std::distance(begin, end) > (unsigned long)n)
+				throw OutLimitsException();
+			vector.insert(vector.end(), begin, end);
 		}
-	};
-	class NoSpanException : public std::exception{
-		const char* what() const throw(){
-			return "no span to find in container.";
-		}
-	};
+		long shortestSpan();
+		long longestSpan();
+		class OutLimitsException: public std::exception {
+			const char* what() const throw();
+		};
+		class NoSpanException: public std::exception {
+			const char* what() const throw();
+		};
 	private:
-		unsigned int N;
-		std::vector<int> contents;
+		int n;
+		std::vector<int> vector;
 };
 
 #endif
